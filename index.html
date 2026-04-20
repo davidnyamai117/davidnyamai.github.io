@@ -1,870 +1,288 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Kiteme Nyamai - Author & Thought Leader</title>
-    <meta name="description" content="Author of 'Wisdom in the Waiting' - Discovering profound lessons in life's uncertain seasons">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #667eea;
-            --text-light: #666;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: var(--primary-color);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-left: 1rem;
-        }
-
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-light);
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .social-icon:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            font-style: italic;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.85;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary-color);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .book-showcase {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transform: rotate(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .book-showcase:hover {
-            transform: rotate(0deg) scale(1.05);
-        }
-
-        .book-cover {
-            width: 250px;
-            height: 350px;
-            background: var(--gradient);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .book-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .book-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .book-author {
-            font-size: 1rem;
-            margin-top: auto;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 0;
-            background: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            margin: 0 auto;
-            box-shadow: var(--shadow);
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .quote {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 10px;
-            font-style: italic;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            border-left: 4px solid var(--accent-color);
-            margin: 2rem 0;
-        }
-
-        /* Book Section */
-        .book-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-
-        .book-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .book-details h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .book-meta {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .book-description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .book-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .book-features li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .book-features li::before {
-            content: '✦';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        /* Speaking Section */
-        .speaking {
-            padding: 6rem 0;
-            background: white;
-        }
-
-        .speaking-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .speaking-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            border: 1px solid #f0f0f0;
-        }
-
-        .speaking-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .speaking-card h4 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .speaking-card p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-        }
-
-        .contact-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .contact .btn {
-            background: white;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .contact-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-social a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-social a:hover {
-            opacity: 1;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-about h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .footer-about p {
-            opacity: 0.7;
-            line-height: 1.8;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .book-content {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .cta-buttons {
-                justify-content: center;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Icon styles */
-        .btn-icon {
-            font-size: 1.2rem;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">David Nyamai</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#book">Book</a></li>
-                <li><a href="#speaking">Speaking</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <div class="social-icons">
-                    <a href="https://twitter.com/David254King" target="_blank" class="social-icon" title="Follow on X/Twitter">𝕏</a>
-                    <a href="https://wa.me/254112110630" target="_blank" class="social-icon" title="WhatsApp">📱</a>
-                </div>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>David Kiteme Nyamai</h1>
-                <p class="hero-subtitle">Author • Educator • Thought Leader</p>
-                <p class="hero-description">
-                    Helping people discover profound wisdom in life's waiting seasons and transform uncertainty into growth.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#book" class="btn btn-primary">Read My Book</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="book-showcase">
-                    <div class="book-cover">
-                        <div class="book-title">WISDOM IN THE WAITING</div>
-                        <div class="book-subtitle">Discovering Life's Profound Lessons in the Space Between Dreams and Destiny</div>
-                        <div class="book-author">DAVID KITEME NYAMAI</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">About David</h2>
-                <p class="section-subtitle">A voice for those navigating life's uncertain seasons</p>
-            </div>
-            <div class="about-content">
-                <div class="profile-image fade-in">
-                    DN
-                </div>
-                <div class="about-text fade-in">
-                    <p>David Kiteme Nyamai is an author, educator, and thought leader who has dedicated his life to understanding the profound lessons hidden in life's waiting periods. His work bridges the gap between philosophical wisdom and practical living.</p>
-                    
-                    <p>Through his writing and speaking, David helps people reframe their relationship with uncertainty, showing how periods of waiting and struggle can become seasons of tremendous growth and preparation.</p>
-                    
-                    <div class="quote">
-                        "Every season of waiting is preparing you for something magnificent. The question is: are you ready to listen?"
-                    </div>
-                    
-                    <p>His debut book, "Wisdom in the Waiting," draws from personal experiences, family wisdom, and philosophical insights to offer a transformative perspective on patience, growth, and finding meaning in life's pauses.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Book Section -->
-    <section class="book-section" id="book">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Wisdom in the Waiting</h2>
-                <p class="section-subtitle">A transformative exploration of growth in life's pauses</p>
-            </div>
-            <div class="book-content">
-                <div class="book-details fade-in">
-                    <h3>Discovering Life's Profound Lessons</h3>
-                    <p class="book-meta">Published 2024 • 187 Pages</p>
-                    <p class="book-description">
-                        In a world obsessed with instant results, "Wisdom in the Waiting" offers a revolutionary perspective on life's inevitable delays and uncertainties. Through personal stories, philosophical insights, and practical wisdom, this book transforms how we understand the space between our dreams and their fulfillment.
-                    </p>
-                    <ul class="book-features">
-                        <li>16 chapters exploring different aspects of waiting and growth</li>
-                        <li>Personal stories from the author's journey of uncertainty</li>
-                        <li>Practical wisdom for navigating life's transitions</li>
-                        <li>Reflection questions for deeper contemplation</li>
-                        <li>A fresh perspective on patience and personal development</li>
-                    </ul>
-                    <div class="cta-buttons">
-                        <a href="mailto:davydaudi254@gmail.com?subject=Book Order Inquiry" class="btn btn-primary">Order Now</a>
-                        <a href="#contact" class="btn btn-outline">Contact for Details</a>
-                    </div>
-                </div>
-                <div class="fade-in">
-                    <div class="quote">
-                        "Let us discover together what treasures hide in the pause between asking and receiving, between hoping and holding."
-                    </div>
-                    <p style="margin-top: 2rem; font-style: italic; color: var(--text-light);">
-                        The book is structured in four thoughtful parts: Understanding the Wait, Embracing the Process, Growing in the Gaps, and Wisdom for the Waiting. Each section builds upon the last, creating a comprehensive guide for anyone facing uncertainty or transition.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Speaking Section -->
-    <section class="speaking" id="speaking">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Speaking & Teaching</h2>
-                <p class="section-subtitle">Bringing wisdom to audiences worldwide</p>
-            </div>
-            <div class="speaking-grid">
-                <div class="speaking-card fade-in">
-                    <h4>Corporate Workshops</h4>
-                    <p>Help teams and leaders navigate uncertainty, embrace change, and find growth opportunities in challenging seasons.</p>
-                </div>
-                <div class="speaking-card fade-in">
-                    <h4>Educational Institutions</h4>
-                    <p>Inspire students and faculty to see waiting periods as preparation seasons for future success and personal development.</p>
-                </div>
-                <div class="speaking-card fade-in">
-                    <h4>Community Events</h4>
-                    <p>Share practical wisdom about patience, resilience, and finding meaning during life's transitional moments.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content fade-in">
-                <h2>Let's Connect</h2>
-                <p>Ready to explore what wisdom awaits in your waiting season?</p>
-                <div class="contact-buttons">
-                    <a href="mailto:davydaudi254@gmail.com" class="btn">
-                        <span class="btn-icon">✉️</span> Email Me
-                    </a>
-                    <a href="https://wa.me/254112110630" target="_blank" class="btn">
-                        <span class="btn-icon">📱</span> WhatsApp
-                    </a>
-                    <a href="mailto:davydaudi254@gmail.com?subject=Speaking Inquiry" class="btn">
-                        <span class="btn-icon">🎤</span> Book a Speaking
-                    </a>
-                </div>
-                <div class="contact-social">
-                    <a href="https://twitter.com/David254King" target="_blank">
-                        <span>𝕏</span> Follow on Twitter @David254King
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>David Kiteme Nyamai</h3>
-                    <p>Author of "Wisdom in the Waiting" - Helping people discover profound lessons in life's uncertain seasons and transform waiting into wisdom.</p>
-                    <div class="footer-social">
-                        <a href="https://twitter.com/David254King" target="_blank" class="social-icon" title="X/Twitter">𝕏</a>
-                        <a href="https://wa.me/254112110630" target="_blank" class="social-icon" title="WhatsApp">📱</a>
-                        <a href="mailto:davydaudi254@gmail.com" class="social-icon" title="Email">✉️</a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#book">The Book</a></li>
-                        <li><a href="#speaking">Speaking</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="mailto:davydaudi254@gmail.com">Email</a></li>
-                        <li><a href="https://wa.me/254112110630" target="_blank">WhatsApp</a></li>
-                        <li><a href="https://twitter.com/David254King" target="_blank">Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 David Kiteme Nyamai. All rights reserved. | Wisdom grows quietly, like roots in winter.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // Book showcase interaction
-        const bookShowcase = document.querySelector('.book-showcase');
-        if (bookShowcase) {
-            bookShowcase.addEventListener('mouseenter', function() {
-                this.style.transform = 'rotate(0deg) scale(1.05)';
-            });
-            
-            bookShowcase.addEventListener('mouseleave', function() {
-                this.style.transform = 'rotate(-5deg)';
-            });
-        }
-    </script>
-</body>
-</html>
+# WISDOM IN THE WAITING
+### Discovering Life's Profound Lessons in the Space Between Dreams and Destiny
+
+**By David Kiteme Nyamai**
+
+---
+
+## COPYRIGHT PAGE
+
+Copyright © 2024 by David Kiteme Nyamai
+
+All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
+
+First Edition, 2024
+
+ISBN: [To be assigned]
+
+Contact: davydaudi254@gmail.com
+
+---
+
+## DEDICATION
+
+To my mother and father,  
+whose faith taught me to trust the wait,  
+and whose love showed me that wisdom grows quietly,  
+like roots in winter.
+
+Dad, though you left before this book was finished,  
+every lesson you taught me lives in these pages.  
+You showed me that a life well-lived  
+is not measured by how quickly we arrive,  
+but by how faithfully we walk the journey.  
+I carry your wisdom forward.
+
+This book is your legacy, too.
+
+---
+
+## ACKNOWLEDGEMENTS
+
+A book about waiting is never written alone. It emerges from countless moments of encouragement, patience, and love from those who believed in both the message and the messenger.
+
+**To my mother**, the embodiment of unwavering faith—you taught me that waiting is not passive endurance but active trust. Your prayers, your strength, and your belief in God's timing have been the foundation upon which this entire book rests. Thank you for showing me what it means to wait well.
+
+**To my wife**, my partner in every season—you have walked beside me through the very uncertainties this book explores. Your love has been my anchor in the storm, your patience my teacher in the wait. Thank you for believing in this dream even when the path wasn't clear, and for reminding me daily that the best things are worth waiting for.
+
+**To my friends**, who have listened to these ideas over countless conversations, challenged my thinking, and encouraged me to keep writing—your presence in my life has been a gift. You have been the community of waiters I write about in Chapter 14, proving that we are never meant to navigate uncertainty alone.
+
+**To Mr. Mbithi**, my Kiswahili Literature teacher—you saw something in me before I saw it in myself. You taught me that words have power, that stories matter, and that a well-told truth can change lives. This book exists because you planted seeds of confidence in a young student who needed to believe he had something to say. Asante sana.
+
+**To every reader** who has ever felt stuck between where they are and where they want to be—this book is for you. May it meet you exactly where you need it.
+
+**And to God**, the Author of time itself, who has taught me that His delays are not His denials, and that every season of waiting is preparing us for something we could never have orchestrated ourselves.
+
+All glory belongs to You.
+
+---
+
+## TABLE OF CONTENTS
+
+**INTRODUCTION: The Space Between Dreams and Destiny** .................. 1
+
+---
+
+### PART I: UNDERSTANDING THE WAIT
+*"Every season of waiting is preparing you for something magnificent"*
+
+**Chapter 1: The Art of Beginning Again**  
+*When dreams don't unfold as planned* .................. 9
+
+**Chapter 2: The University of Uncertainty**  
+*What I learned when the path wasn't clear* .................. 19
+
+**Chapter 3: My Father's Last Lessons**  
+*Wisdom inherited in the quiet seasons* .................. 29
+
+**Chapter 4: The Teacher Before the Classroom**  
+*Learning to lead before having followers* .................. 39
+
+---
+
+### PART II: EMBRACING THE PROCESS
+*"Wisdom grows quietly, like roots in winter"*
+
+**Chapter 5: The Patience Paradox**  
+*Why waiting is not passive endurance* .................. 49
+
+**Chapter 6: Dreams Deferred, Dreams Refined**  
+*How delays become divine redirections* .................. 59
+
+**Chapter 7: The Strength in Not Knowing**  
+*Finding peace in life's question marks* .................. 69
+
+**Chapter 8: Building While Waiting**  
+*The difference between preparation and procrastination* .................. 79
+
+---
+
+### PART III: GROWING IN THE GAPS
+*"The waiting itself is preparation for something beautiful"*
+
+**Chapter 9: Lessons from My Mother's Faith**  
+*What unwavering belief looks like in practice* .................. 89
+
+**Chapter 10: The Philosophy of Becoming**  
+*Why the journey matters as much as the destination* .................. 99
+
+**Chapter 11: Love in the Unseen**  
+*Learning to love what hasn't arrived yet* .................. 109
+
+**Chapter 12: The Classroom of Daily Life**  
+*How ordinary moments become extraordinary teachers* .................. 119
+
+---
+
+### PART IV: WISDOM FOR THE WAITING
+*"Are you ready to listen?"*
+
+**Chapter 13: When Setbacks Become Setups**  
+*The hidden purpose in life's interruptions* .................. 129
+
+**Chapter 14: The Community of Waiters**  
+*Finding strength in shared uncertainty* .................. 139
+
+**Chapter 15: Preparing the Next Generation**  
+*What I want my unborn child to know about waiting* .................. 149
+
+**Chapter 16: The Spring That Surely Comes**  
+*Trust in the timing of your life* .................. 159
+
+---
+
+**CONCLUSION: The Wisdom to Wait Well** .................. 169
+
+**ABOUT THE AUTHOR** .................. 177
+
+---
+
+### REFLECTION QUESTIONS FOR EACH CHAPTER
+*Questions for personal contemplation or group discussion*
+
+**Part I Questions** .................. 179  
+**Part II Questions** .................. 181  
+**Part III Questions** .................. 183  
+**Part IV Questions** .................. 185
+
+---
+
+## INTRODUCTION
+### The Space Between Dreams and Destiny
+
+[Content to be written]
+
+---
+
+## PART I: UNDERSTANDING THE WAIT
+
+### Chapter 1: The Art of Beginning Again
+*When dreams don't unfold as planned*
+
+[Content to be written]
+
+### Chapter 2: The University of Uncertainty
+*What I learned when the path wasn't clear*
+
+[Content to be written]
+
+### Chapter 3: My Father's Last Lessons
+*Wisdom inherited in the quiet seasons*
+
+[Content to be written]
+
+### Chapter 4: The Teacher Before the Classroom
+*Learning to lead before having followers*
+
+[Content to be written]
+
+---
+
+## PART II: EMBRACING THE PROCESS
+
+### Chapter 5: The Patience Paradox
+*Why waiting is not passive endurance*
+
+[Content to be written]
+
+### Chapter 6: Dreams Deferred, Dreams Refined
+*How delays become divine redirections*
+
+[Content to be written]
+
+### Chapter 7: The Strength in Not Knowing
+*Finding peace in life's question marks*
+
+[Content to be written]
+
+### Chapter 8: Building While Waiting
+*The difference between preparation and procrastination*
+
+[Content to be written]
+
+---
+
+## PART III: GROWING IN THE GAPS
+
+### Chapter 9: Lessons from My Mother's Faith
+*What unwavering belief looks like in practice*
+
+[Content to be written]
+
+### Chapter 10: The Philosophy of Becoming
+*Why the journey matters as much as the destination*
+
+[Content to be written]
+
+### Chapter 11: Love in the Unseen
+*Learning to love what hasn't arrived yet*
+
+[Content to be written]
+
+### Chapter 12: The Classroom of Daily Life
+*How ordinary moments become extraordinary teachers*
+
+[Content to be written]
+
+---
+
+## PART IV: WISDOM FOR THE WAITING
+
+### Chapter 13: When Setbacks Become Setups
+*The hidden purpose in life's interruptions*
+
+[Content to be written]
+
+### Chapter 14: The Community of Waiters
+*Finding strength in shared uncertainty*
+
+[Content to be written]
+
+### Chapter 15: Preparing the Next Generation
+*What I want my unborn child to know about waiting*
+
+[Content to be written]
+
+### Chapter 16: The Spring That Surely Comes
+*Trust in the timing of your life*
+
+[Content to be written]
+
+---
+
+## CONCLUSION
+### The Wisdom to Wait Well
+
+[Content to be written]
+
+---
+
+## ABOUT THE AUTHOR
+
+[Content to be written]
+
+---
+
+## REFLECTION QUESTIONS
+
+### Part I Questions
+[To be written]
+
+### Part II Questions
+[To be written]
+
+### Part III Questions
+[To be written]
+
+### Part IV Questions
+[To be written]
+
+---
+
+*"Let us discover together what treasures hide in the pause between asking and receiving, between hoping and holding."*
+
+---
+
+**END OF MANUSCRIPT STRUCTURE**
+
+_This is a work in progress. Chapters will be written and added progressively._
